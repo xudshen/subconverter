@@ -355,6 +355,7 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
             case ProxyType::Hysteria2:
                 singleproxy["type"] = "hysteria2";
                 singleproxy["auth"] = x.Password;
+                singleproxy["password"] = x.Password;
                 if (!x.UpMbps.empty())
                     singleproxy["up"] = x.UpMbps;
                 if (!x.DownMbps.empty())
