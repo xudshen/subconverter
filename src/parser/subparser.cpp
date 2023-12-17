@@ -82,7 +82,7 @@ void hysteriaConstruct(Proxy &node, const std::string &group, const std::string 
 void hysteria2Construct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &password, const std::string &host, const std::string &up, const std::string &down, const std::string &alpn, const std::string &obfsParam, const std::string &obfsPassword, tribool udp, tribool tfo, tribool scv)
 {
     commonConstruct(node, ProxyType::Hysteria2, group, remarks, add, port, udp, tfo, scv, tribool());
-    node.Password = password;
+    node.Auth = password;
     node.Host = (host.empty() && !isIPv4(add) && !isIPv6(add)) ? add.data() : trim(host);
     node.UpMbps = up;
     node.DownMbps = down;
