@@ -79,11 +79,12 @@ void hysteriaConstruct(Proxy &node, const std::string &group, const std::string 
     node.FakeType = type;
 }
 
-void hysteria2Construct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &password, const std::string &host, const std::string &up, const std::string &down, const std::string &alpn, const std::string &obfsParam, const std::string &obfsPassword, tribool udp, tribool tfo, tribool scv)
+void hysteria2Construct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &password, const std::string &host, const std::string &mport, const std::string &up, const std::string &down, const std::string &alpn, const std::string &obfsParam, const std::string &obfsPassword, tribool udp, tribool tfo, tribool scv)
 {
     commonConstruct(node, ProxyType::Hysteria2, group, remarks, add, port, udp, tfo, scv, tribool());
     node.Password = password;
     node.Host = (host.empty() && !isIPv4(add) && !isIPv6(add)) ? add.data() : trim(host);
+    node.MPort = mport;
     node.UpMbps = up;
     node.DownMbps = down;
     node.Alpn = alpn;
@@ -1444,7 +1445,7 @@ void explodeStdHysteria(std::string hysteria, Proxy &node)
 
 void explodeStdHysteria2(std::string hysteria2, Proxy &node)
 {
-    std::string add, port, password, host, insecure, up, down, alpn, obfsParam, obfsPassword, remarks;
+    std::string add, port, password, host, mport, insecure, up, down, alpn, obfsParam, obfsPassword, remarks;
     std::string addition;
     tribool scv;
     hysteria2 = hysteria2.substr(12);
@@ -1489,11 +1490,12 @@ void explodeStdHysteria2(std::string hysteria2, Proxy &node)
     obfsParam = getUrlArg(addition,"obfs");
     obfsPassword = getUrlArg(addition,"obfs-password");
     host = getUrlArg(addition,"sni");
+    mport = getUrlArg(addition,"mport");
 
     if(remarks.empty())
         remarks = add + ":" + port;
 
-    hysteria2Construct(node, HYSTERIA2_DEFAULT_GROUP, remarks, add, port, password, host, up, down, alpn, obfsParam, obfsPassword, tribool(), tribool(), scv);
+    hysteria2Construct(node, HYSTERIA2_DEFAULT_GROUP, remarks, add, port, password, host, mport, up, down, alpn, obfsParam, obfsPassword, tribool(), tribool(), scv);
     return;
 }
 

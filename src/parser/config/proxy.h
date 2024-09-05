@@ -63,6 +63,7 @@ struct Proxy
     String Remark;
     String Hostname;
     uint16_t Port = 0;
+    String MPort;
 
     String Username;
     String Password;

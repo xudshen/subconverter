@@ -370,6 +370,10 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
                     singleproxy["obfs"] = x.OBFSParam;
                 if (!x.OBFSPassword.empty())
                     singleproxy["obfs-password"] = x.OBFSPassword;
+                if (!x.MPort.empty()) {
+                     singleproxy["ports"] = x.MPort;
+                     singleproxy.remove("port");
+                 };
                 break;
             case ProxyType::VLESS:
                 singleproxy["type"] = "vless";
