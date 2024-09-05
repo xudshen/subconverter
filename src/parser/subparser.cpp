@@ -1060,7 +1060,7 @@ void explodeClash(Node yamlnode, std::vector<Proxy> &nodes)
     std::string protocol, protoparam, obfs, obfsparam; //ssr
     std::string flow, mode; //trojan
     std::string user; //socks
-    std::string auth,up,down,obfsParam,insecure;//hysteria
+    std::string auth,up,down,obfsParam,insecure,mport;//hysteria
     std::string obfsPassword;//hysteria2
     tribool udp, tfo, scv;
     Node singleproxy;
@@ -1353,8 +1353,10 @@ void explodeClash(Node yamlnode, std::vector<Proxy> &nodes)
             singleproxy["obfs-password"] >>= obfsPassword;
             singleproxy["sni"] >>= host;
             singleproxy["alpn"][0] >>= alpn;
+            singleproxy["mport"] >>= mport;
 
-            hysteria2Construct(node, group, ps, server, port, password, host, up, down, alpn, obfsParam, obfsPassword, udp, tfo, scv);
+
+            hysteria2Construct(node, group, ps, server, port, password, host, mport, up, down, alpn, obfsParam, obfsPassword, udp, tfo, scv);
             break;
         default:
             continue;
