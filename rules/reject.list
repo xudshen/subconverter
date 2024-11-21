@@ -1,2 +1,4 @@
-IP-CIDR,1.3.0.10/32,no-resolve
-DOMAIN,00-gov.cn
+DOMAIN-SUFFIX,null
+DOMAIN-SUFFIX,undefined
+DOMAIN-SUFFIX,geo2.adobe.com
+DOMAIN-SUFFIX,in.applicationinsights.azure.com
